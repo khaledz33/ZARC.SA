@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lecture Landing Page</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .header, .sponsor, .form-section {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .header img, .sponsor img, .speaker img {
+      width: 100px;
+      border-radius: 50%;
+    }
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    button {
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .speaker, .sponsor {
+      margin: 20px 0;
+    }
+    .rating select {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Lecture Title: A Clinical Endodontic Journey for Future Dentists</h2>
+    </div>
+
+    <div class="speaker">
+      <img src="zarc_extracted/صورة_واتساب_بتاريخ_1447-01-20_في_21.24.27_adf59433-removebg-preview (1).png" alt="Speaker Photo">
+      <p><strong>Speaker:</strong> Dr. Mohammed A. Alobaid</p>
+      <img src="zarc_extracted/صورة_واتساب_بتاريخ_1447-01-20_في_20.40.54_355db105-removebg-preview.png" alt="Speaker Logo">
+    </div>
+
+    <div class="sponsor">
+      <p><strong>Sponsored by:</strong></p>
+      <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;">
+        <img src="zarc_extracted/images-removebg-preview.png" alt="Sponsor 1" style="width: 100px; height: auto;">
+        <img src="zarc_extracted/صورة_واتساب_بتاريخ_1447-01-20_في_21.29.10_b2117662-removebg-preview.png" alt="Sponsor 2" style="width: 100px; height: auto;">
+        <img src="zarc_extracted/images-removebg-preview.png" alt="Sponsor 3" style="width: 100px; height: auto;">
+      </div>
+      <p>Company Sponsors</p>
+    </div>
+
+    <div class="form-section">
+      <h3>Registration & Feedback Form</h3>
+
+      <div id="success-message" style="display:none; background-color:#d0e7ff; color:#004085; padding:10px; border-radius:8px; margin-bottom:15px; text-align:center; display: flex; align-items: center; justify-content: center; gap: 10px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/742/742751.png" alt="Success Icon" style="width: 24px; height: 24px;">
+        ✅ <strong>Success:</strong> Your response has been submitted successfully!
+      </div>
+
+      <form action="https://formsubmit.co/moalobaid@outlook.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" name="Full Name" required>
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" name="Phone Number" required>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" name="Email Address" required>
+        </div>
+
+        <div class="form-group">
+          <label>City</label>
+          <input type="text" name="City">
+        </div>
+
+        <div class="form-group rating">
+          <label>Lecture Rating</label>
+          <select name="Lecture Rating">
+            <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+            <option value="4">⭐⭐⭐⭐ Very Good</option>
+            <option value="3">⭐⭐⭐ Good</option>
+            <option value="2">⭐⭐ Fair</option>
+            <option value="1">⭐ Poor</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Your Comment</label>
+          <textarea rows="3" name="Comment"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Suggestions for Future Lectures</label>
+          <textarea rows="3" name="Suggestions"></textarea>
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+
+      <script>
+        const form = document.querySelector("form");
+        const successMessage = document.getElementById("success-message");
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const formData = new FormData(form);
+          fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          }).then(response => {
+            if (response.ok) {
+              successMessage.style.display = 'block';
+              form.reset();
+            }
+          });
+        });
+      </script>
+    </div>
+
+    <div style="text-align:center; margin-top: 30px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Tooth_Nerve.svg/1024px-Tooth_Nerve.svg.png" alt="Endodontic Illustration" style="max-width: 100%; height: auto;">
+    </div>
+  </div>
+</body>
+</html>
